@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: RatingService
+  name: RatingService
+  labels:
+    app: RatingService
+spec:
+  selector:
+    matchLabels:
+      app: RatingService
+  template:
+    metadata:
+      labels:
+        app: RatingService
+        name: RatingService
+    spec:
+      containers:
+        - name: RatingService
+          image: MrAzharuddin/book-store-backend/RatingService
+          imagePullPolicy: Always
+          ports:
+        
+          - containerPort: 8005
+            name: http
+        
+        
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+        
