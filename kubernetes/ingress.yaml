@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: RatingService
+  name: Rating-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: Rating.example.com 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: RatingService
+            port:
+              number: 8005
