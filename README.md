@@ -1,2 +1,2 @@
 # ratingservice
-demo
+demo-1
